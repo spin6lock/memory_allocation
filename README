@@ -1,0 +1,4 @@
+From the `man 3 free` page, FreeBSD seems to use bitmap to keep information about 
+avaliable memory. Linux, on the other hand, uses linked-list instead and insists this is the C89 and C99 standard.
+
+The difference of memory allocation have different behaviours on mistaken using of free(3). On FreeBSD, after malloc to ptr, and ptr++, free(3) can still work properly.[*DON'T RELY ON THIS*] This demo tests extremely condition: allocate 1MB memory and only free the second half part of it. Then it leads to almost 4GB VIRT occupied and I don't know why.
